@@ -115,5 +115,47 @@
     return replace;
 }
 
+- (CGSize)m_sizeWithFont:(UIFont *)font size:(CGSize)size model:(NSLineBreakMode)lineBreakMode{
+    if ([self m_stringIsNullOrEmpty]) {
+        return CGSizeZero;
+    }
+    CGSize result;
+    if (!font) font = [UIFont systemFontOfSize:12];
+    if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableDictionary *attr = [NSMutableDictionary new];
+        attr[NSFontAttributeName] = font;
+        if (lineBreakMode != NSLineBreakByWordWrapping) {
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineBreakMode = lineBreakMode;
+            attr[NSParagraphStyleAttributeName] = paragraphStyle;
+        }
+        CGRect rect = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attr context:nil];
+        result = rect.size;
+    } else {//消除黄色警告
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        result = [self sizeWithFont:font constrainedToSize:size lineBreakMode:lineBreakMode];
+#pragma clang diagnostic pop
+    }
+    return result;
+}
+
+- (CGSize)m_sizeWithFont:(UIFont *)font{
+    
+    return [self m_sizeWithFont:font size:CGSizeMake(0, 0) model:NSLineBreakByWordWrapping];
+}
+
+- (CGFloat)m_widthWithFont:(UIFont *)font{
+    CGSize size = [self m_sizeWithFont:font size:CGSizeMake(HUGE, HUGE) model:NSLineBreakByWordWrapping];
+    return size.width;
+}
+
+
+- (CGFloat)m_heightWithFont:(UIFont *)font width:(CGFloat)width{
+    CGSize size = [self m_sizeWithFont:font size:CGSizeMake(width, HUGE) model:NSLineBreakByWordWrapping];
+    return size.height;
+}
+
+
 
 @end

@@ -66,4 +66,41 @@
  */
 - (NSString *)m_removeAllSpace;
 
+/**
+ 获取字体的 size
+
+ @param font 字体 font
+ @param size  原始 size
+ @param lineBreakMode 换行模式
+ @return  size
+ */
+- (CGSize)m_sizeWithFont:(UIFont *)font size:(CGSize)size model:(NSLineBreakMode)lineBreakMode;
+
+/**
+ 获取指定字符串的 size
+ 
+ @param font 字符串字体大小
+ @return size
+ */
+- (CGSize)m_sizeWithFont:(UIFont *)font;
+
+
+/**
+ 获取字体宽度
+
+ @param font 字符串字体大小
+ @return  计算好的宽度
+ */
+- (CGFloat)m_widthWithFont:(UIFont *)font;
+
+/**
+ 指定字符串宽度获取高度
+
+ @param font  字符串字体大小
+ @param width  宽度
+ @return  字符串高度
+ */
+- (CGFloat)m_heightWithFont:(UIFont *)font width:(CGFloat)width;
+
+
 @end
