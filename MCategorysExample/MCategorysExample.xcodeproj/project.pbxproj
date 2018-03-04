@@ -16,6 +16,7 @@
 		6D342A1A204BCAAC00EEB0D3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D342A18204BCAAC00EEB0D3 /* Info.plist */; };
 		6D342A21204BCB0600EEB0D3 /* NSString+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D342A1D204BCB0500EEB0D3 /* NSString+MAdd.m */; };
 		6D342A22204BCB0600EEB0D3 /* NSArray+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D342A20204BCB0600EEB0D3 /* NSArray+MAdd.m */; };
+		6DFC8953204BDA7900F95579 /* UIView+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFC8952204BDA7900F95579 /* UIView+MAdd.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		6D342A1D204BCB0500EEB0D3 /* NSString+MAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MAdd.m"; sourceTree = "<group>"; };
 		6D342A1F204BCB0600EEB0D3 /* NSArray+MAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MAdd.h"; sourceTree = "<group>"; };
 		6D342A20204BCB0600EEB0D3 /* NSArray+MAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MAdd.m"; sourceTree = "<group>"; };
+		6DFC8951204BDA7900F95579 /* UIView+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+MAdd.h"; sourceTree = "<group>"; };
+		6DFC8952204BDA7900F95579 /* UIView+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+MAdd.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 		6D342A17204BCAAC00EEB0D3 /* MCategorys */ = {
 			isa = PBXGroup;
 			children = (
+				6DFC8950204BD9EA00F95579 /* UIView */,
 				6D342A18204BCAAC00EEB0D3 /* Info.plist */,
 				6D342A19204BCAAC00EEB0D3 /* MCategorys.h */,
 				6D342A1E204BCB0600EEB0D3 /* NSArray */,
@@ -109,6 +113,15 @@
 				6D342A20204BCB0600EEB0D3 /* NSArray+MAdd.m */,
 			);
 			path = NSArray;
+			sourceTree = "<group>";
+		};
+		6DFC8950204BD9EA00F95579 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				6DFC8951204BDA7900F95579 /* UIView+MAdd.h */,
+				6DFC8952204BDA7900F95579 /* UIView+MAdd.m */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DFC8953204BDA7900F95579 /* UIView+MAdd.m in Sources */,
 				6D342A06204BCA8F00EEB0D3 /* ViewController.m in Sources */,
 				6D342A22204BCB0600EEB0D3 /* NSArray+MAdd.m in Sources */,
 				6D342A11204BCA8F00EEB0D3 /* main.m in Sources */,
