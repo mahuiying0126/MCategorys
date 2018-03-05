@@ -7,8 +7,13 @@
 //
 
 #import "NSString+MAdd.h"
+#import <CommonCrypto/CommonDigest.h>
+#include <sys/param.h>//获取手机内存情况
+#include <sys/mount.h>
 
 @implementation NSString (MAdd)
+
+#pragma mark - 字符串处理
 
 - (BOOL)m_stringIsNullOrEmpty{
     NSString *string = self;
@@ -101,6 +106,11 @@
     return nil;
 }
 
+-(NSMutableAttributedString *)m_exchangeAttribute{
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc]initWithString:self];
+    return string;
+}
+
 - (NSString *)m_trimmedString{
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
@@ -156,6 +166,154 @@
     return size.height;
 }
 
+
+#pragma mark - 字符串加密以及 json 转化
+
+- (NSString *)m_encodingBase64{
+    NSData *stingDate = [self m_dataUTF_8Value];
+    NSString *encodString = [stingDate base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return encodString;
+}
+
+- (NSString *)m_decodeBase64{
+    NSData *stringDate = [[NSData alloc]initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSString *decodeString = [[NSString alloc]initWithData:stringDate encoding:NSUTF8StringEncoding];
+    return decodeString;
+}
+
+- (NSString *)m_encodingMD5{
+    if ([self m_stringIsNullOrEmpty]) {
+        return nil;
+    }
+    const char *value = [self UTF8String];
+    unsigned char outPutBuffer[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(value, (CC_LONG)strlen(value), outPutBuffer);
+    NSMutableString *outPutString = [[NSMutableString alloc]initWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (NSInteger count = 0; count < CC_MD5_DIGEST_LENGTH; count ++) {
+        [outPutString appendFormat:@"%02x",outPutBuffer[count]];
+    }
+    return outPutString;
+}
+
+- (NSData *)m_dataUTF_8Value{
+    return [self dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (id)m_jsonValueDecode{
+    NSData *stringData = [self m_dataUTF_8Value];
+    NSError *error = nil;
+    id value = [NSJSONSerialization JSONObjectWithData:stringData options:kNilOptions error:&error];
+    if (error) {
+        NSLog(@"json 字符串转化失败:%@",error);
+    }
+    return value;
+    
+}
+
+#pragma mark - 实用工具
+
++ (double)m_freeDiskSpace{
+    struct statfs buf;
+    double freeSpace = -1;
+    if (statfs("/var", &buf) >= 0) {
+        freeSpace = (double)(buf.f_bsize * buf.f_bavail);
+    }
+    return (freeSpace/1024/1024/1024.0);
+}
+
+- (NSString *)m_mobileFormatWithsSeparator:(NSString *)separator{
+    if ([self m_checkPhoneNumber]) {
+        //是电话号码
+        NSString *tempSeparator = @" ";
+        if (separator) {
+            //如果有输入格式,则根据格式分割
+            tempSeparator = separator;
+        }
+        NSMutableString *value = [[NSMutableString alloc] initWithString:self];
+        
+        [value insertString:separator
+                    atIndex:3];
+        [value insertString:separator
+                    atIndex:8];
+        return value;
+        
+    }else{
+        return self;
+    }
+}
+
+- (NSString *)m_hideMiddleStringWithPhoneNumber{
+    if ([self m_checkPhoneNumber]) {
+        NSMutableString *phoneNumberString = [NSMutableString stringWithString:self];
+        
+        NSRange phoneNumberRange = NSMakeRange(3, 4);
+        [phoneNumberString replaceCharactersInRange:phoneNumberRange withString:@"****"];
+        
+        return phoneNumberString;
+    }
+    return self;
+}
+
+- (BOOL)m_checkChinaMobelPhoneNumber{
+    /**
+     * 中国移动：China Mobile
+     * 134,135,136,137,138,139,150,151,152,157,158,159,182,183,184,187,188,147,178,1705
+     */
+    NSString *rules = @"(^1(3[4-9]|4[7]|5[0-27-9]|7[8]|8[2-478])\\d{8}$)|(^1705\\d{7}$)";
+    
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkChinaUnicomPhoneNumber {
+    
+    /**
+     * 中国联通：China Unicom
+     * 130,131,132,155,156,185,186,145,176,1709
+     */
+    NSString *rules = @"(^1(3[0-2]|4[5]|5[56]|7[6]|8[56])\\d{8}$)|(^1709\\d{7}$)";
+    
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkChinaTelecomPhoneNumber {
+    
+    /**
+     * 中国电信：China Telecom
+     * 133,153,180,181,189,177,1700
+     */
+    NSString *rules = @"(^1(33|53|77|8[019])\\d{8}$)|(^1700\\d{7}$)";
+    
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkPhoneNumber{
+    /**
+     * 手机号码:
+     * 13[0-9], 14[5,7], 15[0, 1, 2, 3, 5, 6, 7, 8, 9], 17[6, 7, 8], 18[0-9], 170[0-9]
+     * 移动号段: 134,135,136,137,138,139,150,151,152,157,158,159,182,183,184,187,188,147,178,1705
+     * 联通号段: 130,131,132,155,156,185,186,145,176,1709
+     * 电信号段: 133,153,180,181,189,177,1700
+     */
+    NSString *MOBILE = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|70)\\d{8}$";
+    
+    return [self m_regularWithRule:MOBILE] ||
+    [self m_checkChinaMobelPhoneNumber] ||
+    [self m_checkChinaUnicomPhoneNumber] ||
+    [self m_checkChinaTelecomPhoneNumber];
+}
+
+#pragma mark - 通过正则判断结果
+
+- (BOOL)m_regularWithRule:(NSString *)rule {
+    
+    if ([self m_stringIsNullOrEmpty]) {
+        return NO;
+    }
+    
+    NSPredicate *stringPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", rule];
+    
+    return [stringPredicate evaluateWithObject:self];
+}
 
 
 @end
