@@ -125,6 +125,34 @@
     return replace;
 }
 
+- (NSString *)m_removeHTMLMark{
+    NSString *html = self;
+    NSScanner *theScanner = [NSScanner scannerWithString:html];
+    NSString *text = nil;
+    
+    while ([theScanner isAtEnd] == NO){
+        
+        [theScanner scanUpToString:@"<" intoString:NULL] ;
+        [theScanner scanUpToString:@">" intoString:&text] ;
+        html = [html stringByReplacingOccurrencesOfString:[ NSString stringWithFormat:@"%@>", text] withString:@""];
+        if ([html containsString:@"</p><p>"]) {
+            NSString *replace = [html stringByReplacingOccurrencesOfString:@"</p><p>" withString:@"\n"];
+            
+            html = replace;
+        }
+        if ([html containsString:@"&nbsp;"]){
+            NSString *replace = [html stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+            html = replace;
+        }
+        if ([html containsString:@"_ueditor_page_break_tag_"]){
+            NSString *replace = [html stringByReplacingOccurrencesOfString:@"_ueditor_page_break_tag_" withString:@" "];
+            
+            html = replace;
+        }
+    }
+    return html;
+}
+
 - (CGSize)m_sizeWithFont:(UIFont *)font size:(CGSize)size model:(NSLineBreakMode)lineBreakMode{
     if ([self m_stringIsNullOrEmpty]) {
         return CGSizeZero;
@@ -254,6 +282,16 @@
     return self;
 }
 
+- (NSString *)m_hideMiddleStringWithBankNumber{
+    if (self.length > 8) {
+        NSMutableString *cardString = [[NSMutableString alloc]initWithString:self];
+        NSRange range = NSMakeRange(4, 8);
+        [cardString replaceCharactersInRange:range withString:@" **** **** "];
+        return cardString;
+    }
+    return self;
+}
+
 - (BOOL)m_checkChinaMobelPhoneNumber{
     /**
      * 中国移动：China Mobile
@@ -302,6 +340,96 @@
     [self m_checkChinaTelecomPhoneNumber];
 }
 
+#pragma mark - 密码相关
+
+- (BOOL)m_isChineseCharacter{
+    NSString *rules = @"^[\u4e00-\u9fa5]{0,}$";
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_isEnglishOrNumbers{
+    NSString *rules = @"^[A-Za-z0-9]+$";
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_stringRangLength:(NSRange)rang{
+    NSUInteger start = rang.location;
+    NSUInteger end = rang.length;
+    NSString *rules = [NSString stringWithFormat:@"^.{%ld,%ld}$", (long)start, (long)end];
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_isEnglishletter{
+    NSString *rules = @"^[A-Za-z]+$";
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_isLowercase{
+    NSString *rules = @"^[a-z]+$";
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_isCapitals{
+    NSString *rules = @"^[A-Z]+$";
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_isNumbersOrLettersOrLineString{
+    NSString *rules = @"^[A-Za-z0-9_]+$";
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkStringIsStrong{
+    NSString *rules = @"^\\w*(?=\\w*\\d)(?=\\w*[a-zA-Z])\\w*$";
+    
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkPassword{
+    NSString *rules = @"^[a-zA-Z]\\w{5,17}$";
+    
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkStrongPassword:(NSRange)range{
+    NSUInteger shortPassword = range.location;
+    NSUInteger longPassword = range.length;
+    NSString *rules = [NSString stringWithFormat:@"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{%ld,%ld}$", (long)shortPassword, (long)longPassword];
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkEmailAddress{
+    NSString *rules = @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+    return [self m_regularWithRule:rules];
+}
+
+- (BOOL)m_checkURL{
+    NSString *rules = @"[a-zA-z]+://[^\\s]*";
+    return [self m_regularWithRule:rules];
+}
+
+-(BOOL)m_checkQQNumber{
+    NSString *rules = @"[1-9][0-9]{4}";
+    return [self m_regularWithRule:rules];
+}
+
+#pragma mark - 时间戳转时间
+
+-(NSString *)timeStampChangeDateFormat:(NSString *)format{
+    if (self.length >= 10) {
+        NSTimeInterval interval = [[self substringToIndex:10] doubleValue];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+        NSDateFormatter *objDateformat = [[NSDateFormatter alloc] init];
+        NSString *tempFormat = @"yyyy-MM-dd HH:mm:ss";
+        if (format) {
+            tempFormat = format;
+        }
+        [objDateformat setDateFormat:tempFormat];
+        return [objDateformat stringFromDate: date];
+    }
+    return self;
+}
+
 #pragma mark - 通过正则判断结果
 
 - (BOOL)m_regularWithRule:(NSString *)rule {
@@ -315,5 +443,12 @@
     return [stringPredicate evaluateWithObject:self];
 }
 
+-(NSString *)regularExpression:(NSString *)regExpress replaceMent:(NSString *)ment{
+    NSString *resultString = self;
+    // 创建 NSRegularExpression 对象,匹配 正则表达式
+    NSRegularExpression *regExp = [[NSRegularExpression alloc]initWithPattern:regExpress options:NSRegularExpressionCaseInsensitive error:nil];
+    resultString = [regExp stringByReplacingMatchesInString:self options:NSMatchingReportProgress range:NSMakeRange(0, self.length) withTemplate:ment];
+    return resultString;
+}
 
 @end

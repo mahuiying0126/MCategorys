@@ -32,6 +32,16 @@
     return [self indexOfObject:object];
 }
 
+- (NSString *)m_jsonStringEncoded{
+    if ([NSJSONSerialization isValidJSONObject:self]) {
+        NSError *error = nil;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+        NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        if (!error) return json;
+    }
+    return nil;
+}
+
 + (NSArray *)m_getArrayFromPlistName:(NSString *)name{
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"plist"];
     if (path) {

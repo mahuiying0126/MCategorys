@@ -76,6 +76,13 @@
 - (NSString *)m_removeAllSpace;
 
 /**
+ 删除 HTML 语句标签
+
+ @return  删除完的字符串
+ */
+- (NSString *)m_removeHTMLMark;
+
+/**
  获取字体的 size
 
  @param font 字体 font
@@ -174,6 +181,13 @@
 - (NSString *)m_hideMiddleStringWithPhoneNumber;
 
 /**
+ 隐藏银行卡中间八位数字
+
+ @return 0000 **** **** 0000
+ */
+- (NSString *)m_hideMiddleStringWithBankNumber;
+
+/**
  是否为移动手机号
 
  @return YES,是; NO,反之
@@ -201,10 +215,123 @@
  */
 - (BOOL)m_checkPhoneNumber;
 
+#pragma mark - 密码相关
+
+/**
+ 当前字符串是否为汉字
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_isChineseCharacter;
+
+/**
+ 当前字符是否为由数字或26个英文字母组成的字符串
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_isEnglishOrNumbers;
+
+/**
+ 当前字符是否为 长度为location-length的所有字符
+ eg.3-20 长度的字符串
+ @param rang location:开始的范围 length:结束的范围
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_stringRangLength:(NSRange)rang;
+
+/**
+ 是否为英文字母
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_isEnglishletter;
+
+/**
+ 是否为小写字母
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_isLowercase;
+
+/**
+ 是否为大写字母
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_isCapitals;
+
+/**
+ 当前字符是否为由数字、26个英文字母或者下划线组成的字符串
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_isNumbersOrLettersOrLineString;
+
+/**
+ *  判断当前字符串是否是字母, 数字及下划线的强组合
+ *
+ *  @return YES,是; NO,反之
+ */
+- (BOOL)m_checkStringIsStrong;
+
+/**
+ 当前字符是否以字母开头，长度在6~18之间, 只能包含字母、数字和下划线的密码
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_checkPassword;
+
+/**
+ 当前字符是否为强密码(必须包含大小写字母和数字的组合，不能使用特殊字符,长度在location-length之间)：location指的是最短密码长度, length指的时最长密码长度
+
+ @param range 密码长度
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_checkStrongPassword:(NSRange)range;
+
+/**
+ 检查字符串是否为邮箱地址
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_checkEmailAddress;
+
+/**
+ 检查字符串是否为 URL 链接
+
+ @return YES,是; NO,反之
+ */
+- (BOOL)m_checkURL;
+
+/**
+ 检查字符串是否为 QQ 号码
+
+ @return YES,是; NO,反之
+ */
+-(BOOL)m_checkQQNumber;
+
+#pragma mark - 时间戳转时间
+
+/**
+ 时间戳转时间(13位时间戳也可以转换)
+ 
+ @param format 时间格式 eg.yyyy-MM-dd HH:mm:ss
+ @return  转换完成的时间默认: eg.2015-02-06 10:18:45
+ */
+-(NSString *)timeStampChangeDateFormat:(NSString *)format;
+
+
 #pragma mark - 通过正则判断结果
 
 - (BOOL)m_regularWithRule:(NSString *)rule;
 
-
+/**
+ 匹配正则,替换字符串
+ 
+ @param regExpress 正则表达式
+ @param ment 要替换的文字
+ @return 修改完成的字符串
+ */
+-(NSString *)regularExpression:(NSString *)regExpress replaceMent:(NSString *)ment;
 
 @end

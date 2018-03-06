@@ -35,6 +35,12 @@
  */
 - (NSUInteger)m_safeIndexOfObject:(id)object;
 
+/**
+ 将array 数据转为 json
+
+ @return json编码
+ */
+- (NSString *)m_jsonStringEncoded;
 
 /**
  根据给的 plist 文件名字返回数组
