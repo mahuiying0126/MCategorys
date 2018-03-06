@@ -2,7 +2,7 @@
 //  UIView+MAdd.m
 //  MCategorysExample
 //
-//  Created by yizhilu on 2018/3/4.
+//  Created by magic on 2018/3/4.
 //  Copyright © 2018年 Magic. All rights reserved.
 //
 
@@ -107,6 +107,17 @@
     frame.size = size;
     self.frame = frame;
 }
+//因为 readonly 只需要实现 get 方法
+- (UIViewController *)viewControl{
+    for (UIView *view = self; view; view = view.superview) {
+        //这里很巧妙的运用了 view = view.superview 循环,每循环一次就会找到当前视图的父类,一直到 control.view
+        UIResponder *respnder = [view nextResponder];
+        if ([respnder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)respnder;
+        }
+    }
+    return nil;
+}
 
 #pragma mark - 截图
 
@@ -135,6 +146,96 @@
     CGPDFContextClose(context);
     CGContextRelease(context);
     return data;
+}
+
+- (void)setLayerShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius{
+    self.layer.shadowColor = color.CGColor;
+    self.layer.shadowOffset = offset;
+    self.layer.shadowRadius = radius;
+    self.layer.shadowOpacity = 1;//阴影不透明程度
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+}
+
+- (void)m_removeAllSubview{
+    while (self.subviews.count) {
+        [self.subviews.lastObject removeFromSuperview];
+    }
+}
+
+#pragma mark - 坐标转化
+
+- (CGPoint)convertPoint:(CGPoint)point toViewOrWindow:(nullable UIView *)view{
+    if (!view) {
+        if ([self isKindOfClass:[UIWindow class]]) {
+            return [((UIWindow *)self) convertPoint:point toWindow:nil];
+        } else {
+            return [self convertPoint:point toView:nil];
+        }
+    }
+    
+    UIWindow *from = [self isKindOfClass:[UIWindow class]] ? (id)self : self.window;
+    UIWindow *to = [view isKindOfClass:[UIWindow class]] ? (id)view : view.window;
+    if ((!from || !to) || (from == to)) return [self convertPoint:point toView:view];
+    point = [self convertPoint:point toView:from];
+    point = [to convertPoint:point fromWindow:from];
+    point = [view convertPoint:point fromView:to];
+    return point;
+}
+
+- (CGPoint)convertPoint:(CGPoint)point fromViewOrWindow:(nullable UIView *)view{
+    if (!view) {
+        if ([self isKindOfClass:[UIWindow class]]) {
+            return [((UIWindow *)self) convertPoint:point fromWindow:nil];
+        } else {
+            return [self convertPoint:point fromView:nil];
+        }
+    }
+    
+    UIWindow *from = [view isKindOfClass:[UIWindow class]] ? (id)view : view.window;
+    UIWindow *to = [self isKindOfClass:[UIWindow class]] ? (id)self : self.window;
+    if ((!from || !to) || (from == to)) return [self convertPoint:point fromView:view];
+    point = [from convertPoint:point fromView:view];
+    point = [to convertPoint:point fromWindow:from];
+    point = [self convertPoint:point fromView:to];
+    return point;
+}
+
+- (CGRect)convertRect:(CGRect)rect toViewOrWindow:(nullable UIView *)view{
+    if (!view) {
+        if ([self isKindOfClass:[UIWindow class]]) {
+            return [((UIWindow *)self) convertRect:rect toWindow:nil];
+        } else {
+            return [self convertRect:rect toView:nil];
+        }
+    }
+    
+    UIWindow *from = [self isKindOfClass:[UIWindow class]] ? (id)self : self.window;
+    UIWindow *to = [view isKindOfClass:[UIWindow class]] ? (id)view : view.window;
+    if (!from || !to) return [self convertRect:rect toView:view];
+    if (from == to) return [self convertRect:rect toView:view];
+    rect = [self convertRect:rect toView:from];
+    rect = [to convertRect:rect fromWindow:from];
+    rect = [view convertRect:rect fromView:to];
+    return rect;
+}
+
+- (CGRect)convertRect:(CGRect)rect fromViewOrWindow:(nullable UIView *)view{
+    if (!view) {
+        if ([self isKindOfClass:[UIWindow class]]) {
+            return [((UIWindow *)self) convertRect:rect fromWindow:nil];
+        } else {
+            return [self convertRect:rect fromView:nil];
+        }
+    }
+    
+    UIWindow *from = [view isKindOfClass:[UIWindow class]] ? (id)view : view.window;
+    UIWindow *to = [self isKindOfClass:[UIWindow class]] ? (id)self : self.window;
+    if ((!from || !to) || (from == to)) return [self convertRect:rect fromView:view];
+    rect = [from convertRect:rect fromView:view];
+    rect = [to convertRect:rect fromWindow:from];
+    rect = [self convertRect:rect fromView:to];
+    return rect;
 }
 
 @end
