@@ -121,7 +121,7 @@
 
 #pragma mark - 截图
 
-- (UIImage *)m_snapshotImage{
+- (nullable UIImage *)m_snapshotImage{
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
@@ -129,7 +129,7 @@
     return snap;
 }
 
-- (NSData *)m_snapshotPDF{
+- (nullable NSData *)m_snapshotPDF{
     CGRect bounds = self.bounds;
     NSMutableData *data = [NSMutableData data];
     CGDataConsumerRef consumer = CGDataConsumerCreateWithCFData((__bridge  CFMutableDataRef)data);
@@ -148,7 +148,7 @@
     return data;
 }
 
-- (void)setLayerShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius{
+- (void)setLayerShadow:(nullable UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius{
     self.layer.shadowColor = color.CGColor;
     self.layer.shadowOffset = offset;
     self.layer.shadowRadius = radius;

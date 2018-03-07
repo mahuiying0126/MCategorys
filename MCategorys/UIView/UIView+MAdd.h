@@ -34,7 +34,7 @@
 @property (nonatomic,assign) CGSize  size;
 
 /**获取当前视图所属控制器*/
-@property (nonatomic, strong,readonly)  UIViewController *viewControl;
+@property (nonatomic, nullable,readonly)  UIViewController *   viewControl;
 
 #pragma mark - 截图
 
@@ -44,14 +44,14 @@
 
  @return 截图图片
  */
-- (UIImage *)m_snapshotImage;
+- (nullable UIImage *)m_snapshotImage;
 
 /**
  视图截图生成 PDF 文件
 
  @return  PDF文件
  */
-- (NSData *)m_snapshotPDF;
+- (nullable NSData *)m_snapshotPDF;
 
 #pragma mark - 视图特效
 
@@ -62,7 +62,7 @@
  @param offset 阴影的 size
  @param radius 圆角
  */
-- (void)setLayerShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius;
+- (void)setLayerShadow:(nullable UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius;
 
 /**
  移除当前视图中所有子视图

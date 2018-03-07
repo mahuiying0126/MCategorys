@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D10D595204FCF550050E825 /* NSBundle+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D594204FCF550050E825 /* NSBundle+MAdd.m */; };
+		6D10D598204FD2510050E825 /* NSMutableArray+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D597204FD2510050E825 /* NSMutableArray+MAdd.m */; };
+		6D10D59C204FDD640050E825 /* NSObject+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D59B204FDD640050E825 /* NSObject+MAdd.m */; };
 		6D342A03204BCA8F00EEB0D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D342A02204BCA8F00EEB0D3 /* AppDelegate.m */; };
 		6D342A06204BCA8F00EEB0D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D342A05204BCA8F00EEB0D3 /* ViewController.m */; };
 		6D342A09204BCA8F00EEB0D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D342A07204BCA8F00EEB0D3 /* Main.storyboard */; };
@@ -20,6 +23,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D10D593204FCF550050E825 /* NSBundle+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MAdd.h"; sourceTree = "<group>"; };
+		6D10D594204FCF550050E825 /* NSBundle+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MAdd.m"; sourceTree = "<group>"; };
+		6D10D596204FD2510050E825 /* NSMutableArray+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+MAdd.h"; sourceTree = "<group>"; };
+		6D10D597204FD2510050E825 /* NSMutableArray+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+MAdd.m"; sourceTree = "<group>"; };
+		6D10D59A204FDD640050E825 /* NSObject+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MAdd.h"; sourceTree = "<group>"; };
+		6D10D59B204FDD640050E825 /* NSObject+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MAdd.m"; sourceTree = "<group>"; };
 		6D3429FE204BCA8F00EEB0D3 /* MCategorysExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCategorysExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D342A01204BCA8F00EEB0D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D342A02204BCA8F00EEB0D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +60,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D10D592204FCF420050E825 /* NSBundle */ = {
+			isa = PBXGroup;
+			children = (
+				6D10D593204FCF550050E825 /* NSBundle+MAdd.h */,
+				6D10D594204FCF550050E825 /* NSBundle+MAdd.m */,
+			);
+			path = NSBundle;
+			sourceTree = "<group>";
+		};
+		6D10D599204FDD4F0050E825 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				6D10D59A204FDD640050E825 /* NSObject+MAdd.h */,
+				6D10D59B204FDD640050E825 /* NSObject+MAdd.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
 		6D3429F5204BCA8F00EEB0D3 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +114,8 @@
 		6D342A17204BCAAC00EEB0D3 /* MCategorys */ = {
 			isa = PBXGroup;
 			children = (
+				6D10D599204FDD4F0050E825 /* NSObject */,
+				6D10D592204FCF420050E825 /* NSBundle */,
 				6D342A18204BCAAC00EEB0D3 /* Info.plist */,
 				6D342A19204BCAAC00EEB0D3 /* MCategorys.h */,
 				6DFC8950204BD9EA00F95579 /* UIView */,
@@ -111,6 +140,8 @@
 			children = (
 				6D342A1F204BCB0600EEB0D3 /* NSArray+MAdd.h */,
 				6D342A20204BCB0600EEB0D3 /* NSArray+MAdd.m */,
+				6D10D596204FD2510050E825 /* NSMutableArray+MAdd.h */,
+				6D10D597204FD2510050E825 /* NSMutableArray+MAdd.m */,
 			);
 			path = NSArray;
 			sourceTree = "<group>";
@@ -199,8 +230,11 @@
 				6DFC8953204BDA7900F95579 /* UIView+MAdd.m in Sources */,
 				6D342A06204BCA8F00EEB0D3 /* ViewController.m in Sources */,
 				6D342A22204BCB0600EEB0D3 /* NSArray+MAdd.m in Sources */,
+				6D10D598204FD2510050E825 /* NSMutableArray+MAdd.m in Sources */,
 				6D342A11204BCA8F00EEB0D3 /* main.m in Sources */,
 				6D342A03204BCA8F00EEB0D3 /* AppDelegate.m in Sources */,
+				6D10D595204FCF550050E825 /* NSBundle+MAdd.m in Sources */,
+				6D10D59C204FDD640050E825 /* NSObject+MAdd.m in Sources */,
 				6D342A21204BCB0600EEB0D3 /* NSString+MAdd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MCategorysExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.magic.MCategorysExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,6 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MCategorysExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.magic.MCategorysExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";

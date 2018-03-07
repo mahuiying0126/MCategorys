@@ -27,6 +27,18 @@ FOUNDATION_EXPORT const unsigned char MCategorysVersionString[];
 
 #import "UIView+MAdd.h"
 
+#pragma mark - NSMutableArray
+
+#import "NSMutableArray+MAdd.h"
+
+#pragma mark - NSBundle
+
+#import "NSBundle+MAdd.h"
+
+#pragma mark - NSObject
+
+#import "NSObject+MAdd.h"
+
 
 #ifdef DEBUG
 #define NSLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
