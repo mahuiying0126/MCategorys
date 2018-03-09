@@ -63,13 +63,114 @@
 }
 
 - (BOOL)m_addMethonWithOriginalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector{
-    
-    Method m_swizzledSelector = class_getInstanceMethod(self.class, swizzledSelector);
-    BOOL isAddMethon = class_addMethod(self.class, originalSelector, class_getMethodImplementation(self.class, swizzledSelector), method_getTypeEncoding(m_swizzledSelector));
+    Class class = self.class;
+    Method m_swizzledSelector = class_getInstanceMethod(class, swizzledSelector);
+    BOOL isAddMethon = class_addMethod(class, originalSelector, class_getMethodImplementation(class, swizzledSelector), method_getTypeEncoding(m_swizzledSelector));
     return isAddMethon;
     
 }
 
+- (void)m_exchangeWithOriginalSelector:(SEL)originalSelector swizzledSelecor:(SEL)swizzledSelector{
+    Class class = self.class;
+    Method m_originalSelect = class_getInstanceMethod(class, originalSelector);
+    Method m_swizzledSelect = class_getInstanceMethod(class, swizzledSelector);
+    
+    BOOL isAddMethod = [self m_addMethonWithOriginalSelector:originalSelector swizzledSelector:swizzledSelector];
+    if (isAddMethod) {
+        class_replaceMethod(class, swizzledSelector, method_getImplementation(m_originalSelect), method_getTypeEncoding(m_originalSelect));
+    }else{
+        method_exchangeImplementations(m_originalSelect, m_swizzledSelect);
+    }
+}
 
+- (NSArray <NSString *> *)m_getClassMethodList{
+    Class class = self.class;
+    
+    NSMutableArray *selectMethodList = [NSMutableArray array];
+    
+    const char *className = class_getName(class);
+    
+    Class metaClass = objc_getMetaClass(className);
+
+    unsigned int methodCount = 0;
+
+    Method *methodList = class_copyMethodList(metaClass, &methodCount);
+    
+    for (int i = 0; i < methodCount; i++) {
+        
+        Method method = methodList[i];
+        
+        SEL selector = method_getName(method);
+        
+        const char *charMethodName = sel_getName(selector);
+        
+        NSString *methodName = [[NSString alloc]initWithUTF8String:charMethodName];
+        
+        [selectMethodList addObject:methodName];
+    }
+    free(methodList);
+    return selectMethodList;
+}
+
+- (NSArray <NSString *> *)m_getClassPropertyList{
+    Class class = self.class;
+    NSMutableArray *propertArray = [NSMutableArray array];
+    unsigned int propertNumber = 0;
+    objc_property_t *propertList = class_copyPropertyList(class, &propertNumber);
+    for (int i = 0; i < propertNumber; i++) {
+        objc_property_t propert = propertList[i];
+        const char *propertChar = property_getName(propert);
+        NSString *propertName = [[NSString alloc]initWithCString:propertChar encoding:NSUTF8StringEncoding];
+        [propertArray addObject:propertName];
+    }
+    free(propertList);
+    
+    return propertArray;
+}
+
+- (NSArray <NSString *> *)m_getClassProtocolList{
+    Class class = self.class;
+    NSMutableArray *protocolArray = [NSMutableArray array];
+    unsigned int protocolCount = 0;
+    __unsafe_unretained Protocol **protocolList = class_copyProtocolList(class, &protocolCount);
+    
+    for (int i = 0 ; i < protocolCount; i++) {
+        Protocol *protocol = protocolList[i];
+        const char *protocolChar = property_getName((__bridge objc_property_t _Nonnull)(protocol));
+        NSString *protocolName = [[NSString alloc]initWithCString:protocolChar encoding:NSUTF8StringEncoding];
+        [protocolArray addObject:protocolName];
+        
+    }
+    free(protocolList);
+
+    return protocolArray;
+}
+
+- (NSArray <NSString *> *)m_getClassIVarList{
+    Class class = self.class;
+    NSMutableArray *ivarArray = [NSMutableArray array];
+    unsigned int ivarCount = 0;
+    Ivar *ivarList = class_copyIvarList(class, &ivarCount);
+    for (int i = 0; i < ivarCount; i++) {
+        Ivar ivar = ivarList[i];
+        const char *ivarChar = ivar_getName(ivar);
+        NSString *ivarName = [[NSString alloc]initWithCString:ivarChar encoding:NSUTF8StringEncoding];
+        [ivarArray addObject:ivarName];
+    }
+    free(ivarList);
+
+    return ivarArray;
+}
+
+- (BOOL)m_hasPropertyWithKey:(NSString *)key{
+    objc_property_t property = class_getProperty([self class], [key UTF8String]);
+    return (BOOL)property;
+}
+
+- (BOOL)m_hasIvarWithKey:(NSString *)key{
+    Ivar ivar = class_getInstanceVariable([self class], [key UTF8String]);
+    
+    return (BOOL)ivar;
+}
 
 @end
