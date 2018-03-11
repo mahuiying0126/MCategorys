@@ -62,7 +62,8 @@
  @param offset 阴影的 size
  @param radius 圆角
  */
-- (void)setLayerShadow:(nullable UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius;
+- (void)setLayerShadow:(nullable UIColor *)color
+                offset:(CGSize)offset radius:(CGFloat)radius;
 
 /**
  移除当前视图中所有子视图
@@ -71,13 +72,17 @@
 
 #pragma mark - 坐标转化
 //以下摘自 YYKit
-- (CGPoint)convertPoint:(CGPoint)point toViewOrWindow:(nullable UIView *)view;
+- (CGPoint)convertPoint:(CGPoint)point
+         toViewOrWindow:(nullable UIView *)view;
 
-- (CGPoint)convertPoint:(CGPoint)point fromViewOrWindow:(nullable UIView *)view;
+- (CGPoint)convertPoint:(CGPoint)point
+       fromViewOrWindow:(nullable UIView *)view;
 
-- (CGRect)convertRect:(CGRect)rect toViewOrWindow:(nullable UIView *)view;
+- (CGRect)convertRect:(CGRect)rect
+       toViewOrWindow:(nullable UIView *)view;
 
-- (CGRect)convertRect:(CGRect)rect fromViewOrWindow:(nullable UIView *)view;
+- (CGRect)convertRect:(CGRect)rect
+     fromViewOrWindow:(nullable UIView *)view;
 
 
 

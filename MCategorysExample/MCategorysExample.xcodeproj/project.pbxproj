@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300BF0EF205579E200A55F5C /* NSData+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 300BF0EE205579E200A55F5C /* NSData+MAdd.m */; };
+		300BF0F320557B2900A55F5C /* NSDate+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 300BF0F220557B2900A55F5C /* NSDate+MAdd.m */; };
 		6D10D595204FCF550050E825 /* NSBundle+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D594204FCF550050E825 /* NSBundle+MAdd.m */; };
 		6D10D598204FD2510050E825 /* NSMutableArray+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D597204FD2510050E825 /* NSMutableArray+MAdd.m */; };
 		6D10D59C204FDD640050E825 /* NSObject+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D59B204FDD640050E825 /* NSObject+MAdd.m */; };
@@ -23,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		300BF0ED205579E200A55F5C /* NSData+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+MAdd.h"; sourceTree = "<group>"; };
+		300BF0EE205579E200A55F5C /* NSData+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+MAdd.m"; sourceTree = "<group>"; };
+		300BF0F120557B2900A55F5C /* NSDate+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+MAdd.h"; sourceTree = "<group>"; };
+		300BF0F220557B2900A55F5C /* NSDate+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MAdd.m"; sourceTree = "<group>"; };
 		6D10D593204FCF550050E825 /* NSBundle+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MAdd.h"; sourceTree = "<group>"; };
 		6D10D594204FCF550050E825 /* NSBundle+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MAdd.m"; sourceTree = "<group>"; };
 		6D10D596204FD2510050E825 /* NSMutableArray+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+MAdd.h"; sourceTree = "<group>"; };
@@ -60,6 +66,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		300BF0EC205579CD00A55F5C /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				300BF0ED205579E200A55F5C /* NSData+MAdd.h */,
+				300BF0EE205579E200A55F5C /* NSData+MAdd.m */,
+			);
+			path = NSData;
+			sourceTree = "<group>";
+		};
+		300BF0F020557B1600A55F5C /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				300BF0F120557B2900A55F5C /* NSDate+MAdd.h */,
+				300BF0F220557B2900A55F5C /* NSDate+MAdd.m */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
 		6D10D592204FCF420050E825 /* NSBundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +138,8 @@
 		6D342A17204BCAAC00EEB0D3 /* MCategorys */ = {
 			isa = PBXGroup;
 			children = (
+				300BF0F020557B1600A55F5C /* NSDate */,
+				300BF0EC205579CD00A55F5C /* NSData */,
 				6D10D599204FDD4F0050E825 /* NSObject */,
 				6D10D592204FCF420050E825 /* NSBundle */,
 				6D342A18204BCAAC00EEB0D3 /* Info.plist */,
@@ -227,8 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300BF0EF205579E200A55F5C /* NSData+MAdd.m in Sources */,
 				6DFC8953204BDA7900F95579 /* UIView+MAdd.m in Sources */,
 				6D342A06204BCA8F00EEB0D3 /* ViewController.m in Sources */,
+				300BF0F320557B2900A55F5C /* NSDate+MAdd.m in Sources */,
 				6D342A22204BCB0600EEB0D3 /* NSArray+MAdd.m in Sources */,
 				6D10D598204FD2510050E825 /* NSMutableArray+MAdd.m in Sources */,
 				6D342A11204BCA8F00EEB0D3 /* main.m in Sources */,

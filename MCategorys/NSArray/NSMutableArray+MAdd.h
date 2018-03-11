@@ -10,6 +10,8 @@
 
 @interface NSMutableArray (MAdd)
 
+#pragma mark - 方法扩展
+
 /**
  向数组里安全加入一个对象
 
@@ -23,7 +25,8 @@
  @param object 对象
  @param index 插入下标
  */
-- (void)m_safeInserObject:(id)object index:(NSInteger)index;
+- (void)m_safeInserObject:(id)object
+                    index:(NSInteger)index;
 
 /**
  根据下标安全移除对象
@@ -70,7 +73,8 @@
  */
 - (void)m_prependObjectWithArray:(NSArray *)array;
 
-- (void)m_insterObjectWithArray:(NSArray *)array index:(NSInteger) index; 
+- (void)m_insterObjectWithArray:(NSArray *)array
+                          index:(NSInteger) index; 
 
 /**
  将数组元素前后颠倒

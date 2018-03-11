@@ -62,7 +62,7 @@
     objc_setAssociatedObject(observer, helpeKey, sub, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)m_addMethonWithOriginalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector{
+- (BOOL)m_addInstanceMethonWithOriginalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector{
     Class class = self.class;
     Method m_swizzledSelector = class_getInstanceMethod(class, swizzledSelector);
     BOOL isAddMethon = class_addMethod(class, originalSelector, class_getMethodImplementation(class, swizzledSelector), method_getTypeEncoding(m_swizzledSelector));
@@ -70,12 +70,12 @@
     
 }
 
-- (void)m_exchangeWithOriginalSelector:(SEL)originalSelector swizzledSelecor:(SEL)swizzledSelector{
+- (void)m_exchangeInstanceWithOriginalSelector:(SEL)originalSelector swizzledSelecor:(SEL)swizzledSelector{
     Class class = self.class;
     Method m_originalSelect = class_getInstanceMethod(class, originalSelector);
     Method m_swizzledSelect = class_getInstanceMethod(class, swizzledSelector);
     
-    BOOL isAddMethod = [self m_addMethonWithOriginalSelector:originalSelector swizzledSelector:swizzledSelector];
+    BOOL isAddMethod = [self m_addInstanceMethonWithOriginalSelector:originalSelector swizzledSelector:swizzledSelector];
     if (isAddMethod) {
         class_replaceMethod(class, swizzledSelector, method_getImplementation(m_originalSelect), method_getTypeEncoding(m_originalSelect));
     }else{
@@ -171,6 +171,19 @@
     Ivar ivar = class_getInstanceVariable([self class], [key UTF8String]);
     
     return (BOOL)ivar;
+}
+
+- (void)m_globalAsyncWithComplete:(MComplete)complete{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), complete);
+}
+
+- (void)m_getMainAsyncWithComplete:(MComplete)complete{
+    dispatch_async(dispatch_get_main_queue(), complete);
+}
+
+- (void)m_afterSecond:(NSTimeInterval)afterSecond complete:(MComplete)complete{
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, afterSecond * NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), complete);
 }
 
 @end

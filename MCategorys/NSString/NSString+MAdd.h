@@ -90,7 +90,9 @@
  @param lineBreakMode 换行模式
  @return  size
  */
-- (CGSize)m_sizeWithFont:(UIFont *)font size:(CGSize)size model:(NSLineBreakMode)lineBreakMode;
+- (CGSize)m_sizeWithFont:(UIFont *)font
+                    size:(CGSize)size
+                   model:(NSLineBreakMode)lineBreakMode;
 
 /**
  获取指定字符串的 size
@@ -116,7 +118,8 @@
  @param width  宽度
  @return  字符串高度
  */
-- (CGFloat)m_heightWithFont:(UIFont *)font width:(CGFloat)width;
+- (CGFloat)m_heightWithFont:(UIFont *)font
+                      width:(CGFloat)width;
 
 #pragma mark - 字符串加密以及 json 转化
 
@@ -332,6 +335,7 @@
  @param ment 要替换的文字
  @return 修改完成的字符串
  */
--(NSString *)regularExpression:(NSString *)regExpress replaceMent:(NSString *)ment;
+-(NSString *)regularExpression:(NSString *)regExpress
+                   replaceMent:(NSString *)ment;
 
 @end
