@@ -11,6 +11,13 @@
 @interface NSBundle (MAdd)
 
 /**
+ 获取 App bundle 名字
+
+ @return 名字
+ */
++ (NSString *)m_getAppBundleName;
+
+/**
  获取 APP 名称
 
  @return  app名字

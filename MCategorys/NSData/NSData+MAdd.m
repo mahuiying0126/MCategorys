@@ -10,6 +10,22 @@
 
 @implementation NSData (MAdd)
 
+-(NSString *)utf8String{
+    if (self.length > 0) {
+        return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
+    }
+    return @"";
+}
+
+- (id)m_jsonValueDecoded{
+    NSError *error = nil;
+    id value = [NSJSONSerialization JSONObjectWithData:self options:kNilOptions error:&error];
+    if (error) {
+        NSLog(@"jsonValueDecoded error:%@", error);
+    }
+    return value;
+}
+
 + (NSData *)m_changeDataFromImage:(UIImage *)image compressionRatio:(CGFloat)ratio{
     NSData * data = UIImageJPEGRepresentation(image, ratio);
     

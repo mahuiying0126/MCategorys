@@ -39,6 +39,35 @@ FOUNDATION_EXPORT const unsigned char MCategorysVersionString[];
 
 #import "NSObject+MAdd.h"
 
+#pragma mark - NSData
+
+#import "NSData+MAdd.h"
+
+#pragma mark - NSDate
+
+#import "NSDate+MAdd.h"
+
+#pragma mark - UIColor
+
+#import "UIColor+MAdd.h"
+
+#pragma mark - UIButton
+
+#import "UIButton+MAdd.h"
+
+#pragma mark - UIApplication
+
+#import "UIApplication+MAdd.h"
+
+#pragma mark - NSURL
+
+#import "NSURL+MAdd.h"
+
+#pragma mark - NSDictionary
+
+#import "NSDictionary+MAdd"
+
+#import "NSMutableDictionary+MAdd"
 
 #ifdef DEBUG
 #define NSLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);

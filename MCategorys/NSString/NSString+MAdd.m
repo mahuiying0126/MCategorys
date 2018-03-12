@@ -13,6 +13,22 @@
 
 @implementation NSString (MAdd)
 
+-(NSURL *)url{
+    return [self m_exchangeURL];
+}
+
+-(BOOL)isNull{
+    return [self m_stringIsNullOrEmpty];
+}
+
+-(NSRange)rangeAll{
+    return [self m_rangeOfAll];
+}
+
+-(NSMutableAttributedString *)attribute{
+    return [self m_exchangeAttribute];
+}
+
 #pragma mark - 字符串处理
 
 - (BOOL)m_stringIsNullOrEmpty{

@@ -10,6 +10,20 @@
 #import <UIKit/UIKit.h>
 @interface NSString (MAdd)
 
+#pragma mark - 属性扩展
+
+/**URL 属性*/
+@property (nonatomic, readonly) NSURL *url;
+/**是否为空*/
+@property (nonatomic, assign,readonly) BOOL isNull;
+/** 获取字符串的 range*/
+@property (nonatomic, assign,readonly) NSRange rangeAll;
+/**attribute 属性*/
+@property (nonatomic, strong,readonly) NSMutableAttributedString *attribute;
+
+
+
+
 #pragma mark - 字符串处理
 
 /**

@@ -12,6 +12,12 @@
 		6D10D595204FCF550050E825 /* NSBundle+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D594204FCF550050E825 /* NSBundle+MAdd.m */; };
 		6D10D598204FD2510050E825 /* NSMutableArray+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D597204FD2510050E825 /* NSMutableArray+MAdd.m */; };
 		6D10D59C204FDD640050E825 /* NSObject+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D59B204FDD640050E825 /* NSObject+MAdd.m */; };
+		6D10D5E520562F540050E825 /* NSDictionary+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D5E420562F540050E825 /* NSDictionary+MAdd.m */; };
+		6D10D5E8205650EF0050E825 /* NSMutableDictionary+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D5E7205650EF0050E825 /* NSMutableDictionary+MAdd.m */; };
+		6D10D5EC205658D20050E825 /* NSURL+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D5EB205658D20050E825 /* NSURL+MAdd.m */; };
+		6D10D5F020565C980050E825 /* UIApplication+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D5EF20565C980050E825 /* UIApplication+MAdd.m */; };
+		6D10D5F42056629F0050E825 /* UIButton+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D5F32056629F0050E825 /* UIButton+MAdd.m */; };
+		6D10D5F820566F4D0050E825 /* UIColor+MAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10D5F720566F4D0050E825 /* UIColor+MAdd.m */; };
 		6D342A03204BCA8F00EEB0D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D342A02204BCA8F00EEB0D3 /* AppDelegate.m */; };
 		6D342A06204BCA8F00EEB0D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D342A05204BCA8F00EEB0D3 /* ViewController.m */; };
 		6D342A09204BCA8F00EEB0D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D342A07204BCA8F00EEB0D3 /* Main.storyboard */; };
@@ -35,6 +41,18 @@
 		6D10D597204FD2510050E825 /* NSMutableArray+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+MAdd.m"; sourceTree = "<group>"; };
 		6D10D59A204FDD640050E825 /* NSObject+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MAdd.h"; sourceTree = "<group>"; };
 		6D10D59B204FDD640050E825 /* NSObject+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MAdd.m"; sourceTree = "<group>"; };
+		6D10D5E320562F540050E825 /* NSDictionary+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MAdd.h"; sourceTree = "<group>"; };
+		6D10D5E420562F540050E825 /* NSDictionary+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MAdd.m"; sourceTree = "<group>"; };
+		6D10D5E6205650EF0050E825 /* NSMutableDictionary+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+MAdd.h"; sourceTree = "<group>"; };
+		6D10D5E7205650EF0050E825 /* NSMutableDictionary+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+MAdd.m"; sourceTree = "<group>"; };
+		6D10D5EA205658D20050E825 /* NSURL+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+MAdd.h"; sourceTree = "<group>"; };
+		6D10D5EB205658D20050E825 /* NSURL+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MAdd.m"; sourceTree = "<group>"; };
+		6D10D5EE20565C980050E825 /* UIApplication+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+MAdd.h"; sourceTree = "<group>"; };
+		6D10D5EF20565C980050E825 /* UIApplication+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+MAdd.m"; sourceTree = "<group>"; };
+		6D10D5F22056629F0050E825 /* UIButton+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+MAdd.h"; sourceTree = "<group>"; };
+		6D10D5F32056629F0050E825 /* UIButton+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MAdd.m"; sourceTree = "<group>"; };
+		6D10D5F620566F4D0050E825 /* UIColor+MAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+MAdd.h"; sourceTree = "<group>"; };
+		6D10D5F720566F4D0050E825 /* UIColor+MAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MAdd.m"; sourceTree = "<group>"; };
 		6D3429FE204BCA8F00EEB0D3 /* MCategorysExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCategorysExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D342A01204BCA8F00EEB0D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D342A02204BCA8F00EEB0D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -102,6 +120,53 @@
 			path = NSObject;
 			sourceTree = "<group>";
 		};
+		6D10D5E220562D5F0050E825 /* NSDictory */ = {
+			isa = PBXGroup;
+			children = (
+				6D10D5E320562F540050E825 /* NSDictionary+MAdd.h */,
+				6D10D5E420562F540050E825 /* NSDictionary+MAdd.m */,
+				6D10D5E6205650EF0050E825 /* NSMutableDictionary+MAdd.h */,
+				6D10D5E7205650EF0050E825 /* NSMutableDictionary+MAdd.m */,
+			);
+			path = NSDictory;
+			sourceTree = "<group>";
+		};
+		6D10D5E9205658C20050E825 /* NSURL */ = {
+			isa = PBXGroup;
+			children = (
+				6D10D5EA205658D20050E825 /* NSURL+MAdd.h */,
+				6D10D5EB205658D20050E825 /* NSURL+MAdd.m */,
+			);
+			path = NSURL;
+			sourceTree = "<group>";
+		};
+		6D10D5ED20565C7C0050E825 /* UIApplication */ = {
+			isa = PBXGroup;
+			children = (
+				6D10D5EE20565C980050E825 /* UIApplication+MAdd.h */,
+				6D10D5EF20565C980050E825 /* UIApplication+MAdd.m */,
+			);
+			path = UIApplication;
+			sourceTree = "<group>";
+		};
+		6D10D5F1205662900050E825 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				6D10D5F22056629F0050E825 /* UIButton+MAdd.h */,
+				6D10D5F32056629F0050E825 /* UIButton+MAdd.m */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		6D10D5F520566F3F0050E825 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				6D10D5F620566F4D0050E825 /* UIColor+MAdd.h */,
+				6D10D5F720566F4D0050E825 /* UIColor+MAdd.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
 		6D3429F5204BCA8F00EEB0D3 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +203,11 @@
 		6D342A17204BCAAC00EEB0D3 /* MCategorys */ = {
 			isa = PBXGroup;
 			children = (
+				6D10D5F520566F3F0050E825 /* UIColor */,
+				6D10D5F1205662900050E825 /* UIButton */,
+				6D10D5ED20565C7C0050E825 /* UIApplication */,
+				6D10D5E9205658C20050E825 /* NSURL */,
+				6D10D5E220562D5F0050E825 /* NSDictory */,
 				300BF0F020557B1600A55F5C /* NSDate */,
 				300BF0EC205579CD00A55F5C /* NSData */,
 				6D10D599204FDD4F0050E825 /* NSObject */,
@@ -253,17 +323,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D10D5EC205658D20050E825 /* NSURL+MAdd.m in Sources */,
 				300BF0EF205579E200A55F5C /* NSData+MAdd.m in Sources */,
 				6DFC8953204BDA7900F95579 /* UIView+MAdd.m in Sources */,
+				6D10D5E520562F540050E825 /* NSDictionary+MAdd.m in Sources */,
 				6D342A06204BCA8F00EEB0D3 /* ViewController.m in Sources */,
+				6D10D5F42056629F0050E825 /* UIButton+MAdd.m in Sources */,
 				300BF0F320557B2900A55F5C /* NSDate+MAdd.m in Sources */,
 				6D342A22204BCB0600EEB0D3 /* NSArray+MAdd.m in Sources */,
 				6D10D598204FD2510050E825 /* NSMutableArray+MAdd.m in Sources */,
+				6D10D5F020565C980050E825 /* UIApplication+MAdd.m in Sources */,
 				6D342A11204BCA8F00EEB0D3 /* main.m in Sources */,
 				6D342A03204BCA8F00EEB0D3 /* AppDelegate.m in Sources */,
 				6D10D595204FCF550050E825 /* NSBundle+MAdd.m in Sources */,
 				6D10D59C204FDD640050E825 /* NSObject+MAdd.m in Sources */,
+				6D10D5E8205650EF0050E825 /* NSMutableDictionary+MAdd.m in Sources */,
 				6D342A21204BCB0600EEB0D3 /* NSString+MAdd.m in Sources */,
+				6D10D5F820566F4D0050E825 /* UIColor+MAdd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

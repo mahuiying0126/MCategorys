@@ -10,6 +10,19 @@
 #import <UIKit/UIKit.h>
 @interface NSData (MAdd)
 
+#pragma mark - 扩展属性
+
+/**转 utf8格式*/
+@property (nonatomic, readonly) NSString *utf8String;
+
+/**
+ 将 data 数据 json 格式化
+
+ @return json 数据
+ */
+- (id)m_jsonValueDecoded;
+
+
 #pragma mark - 图片转 data
 
 /**

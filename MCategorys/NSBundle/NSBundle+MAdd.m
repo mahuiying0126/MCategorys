@@ -10,6 +10,10 @@
 
 @implementation NSBundle (MAdd)
 
++ (NSString *)m_getAppBundleName{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+}
+
 + (NSString *)m_getBundleDisplayName{
     return [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleDisplayName"];
 }
