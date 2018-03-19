@@ -66,9 +66,9 @@ FOUNDATION_EXPORT const unsigned char MCategorysVersionString[];
 
 #pragma mark - NSDictionary
 
-#import "NSDictionary+MAdd"
+#import "NSDictionary+MAdd.h"
 
-#import "NSMutableDictionary+MAdd"
+#import "NSMutableDictionary+MAdd.h"
 
 #pragma mark - UITableView
 
