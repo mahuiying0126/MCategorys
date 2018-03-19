@@ -9,31 +9,53 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 @interface UIApplication (MAdd)
-/** 沙盒 documents 路径*/
-@property (nonatomic, readonly) NSURL * _Nullable documentsURL;
-@property (nonatomic, readonly) NSString * _Nullable documentsPath;
+/** 沙盒 documents URL*/
+@property (nonatomic, readonly,nullable) NSURL *documentsURL;
+/** 沙盒 documents Path*/
+@property (nonatomic, readonly,nullable) NSString *documentsPath;
+/** 沙盒 Caches URL*/
+@property (nonatomic, readonly,nullable) NSURL *cachesURL;
+/** 沙盒 Caches Path*/
+@property (nonatomic, readonly,nullable) NSString *cachesPath;
 
-/// 沙盒 Caches 路径
-@property (nonatomic, readonly) NSURL * _Nullable cachesURL;
-@property (nonatomic, readonly) NSString * _Nullable cachesPath;
+/** 沙盒 Library URL*/
+@property (nonatomic, readonly,nullable) NSURL *libraryURL;
+/** 沙盒 Library Path*/
+@property (nonatomic, readonly,nullable) NSString *libraryPath;
 
-/// 沙盒 Library 路径
-@property (nonatomic, readonly) NSURL * _Nullable libraryURL;
-@property (nonatomic, readonly) NSString * _Nullable libraryPath;
-
-/// Application's Bundle Name (show in SpringBoard).
+/** 编译app 名*/
 @property (nullable, nonatomic, readonly) NSString *appBundleName;
-
+/** 应用名*/
 @property (nullable, nonatomic, readonly) NSString *appDisplayName;
 
-/// Application's Bundle ID.  e.g. "com.****.***"
+/** 工程BundleID e.g com.****.****/
 @property (nullable, nonatomic, readonly) NSString *appBundleID;
 
-/// Application's Version.  e.g. "1.2.0"
+/** APP版本号 e.g "1.2.0"*/
 @property (nullable, nonatomic, readonly) NSString *appVersion;
 
-/// Application's Build number. e.g. "123"
+/** APP 编译版本号 e.g 1234*/
 @property (nullable, nonatomic, readonly) NSString *appBuildVersion;
+
+/**获取UIApplication的定位是否授权*/
+@property (nonatomic, assign,readonly) BOOL isGetLocationPermit;
+
+/**获取UIApplication的相机是否授权*/
+@property (nonatomic, assign,readonly) BOOL isGetCameraPermit;
+
+/**获取UIApplication的相册是否授权*/
+@property (nonatomic, assign,readonly) BOOL isGetPhotosLibraryPermit;
+
+/**获取UIApplication的推送功能是否授权*/
+@property (nonatomic, assign,readonly) BOOL isGetReminderPermit;
+
+/**获取UIApplication的通信录是否授权*/
+@property (nonatomic, assign,readonly) BOOL isGetAddressBookPermit;
+
+
+
+
+
 
 
 @end

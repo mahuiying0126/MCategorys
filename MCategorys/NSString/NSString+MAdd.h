@@ -20,7 +20,7 @@
 @property (nonatomic, assign,readonly) NSRange rangeAll;
 /**attribute 属性*/
 @property (nonatomic, strong,readonly) NSMutableAttributedString *attribute;
-
+@property (nonatomic,readonly) id jsonValueDecode;
 
 
 

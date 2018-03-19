@@ -45,6 +45,8 @@
 @property (nonatomic, readonly) BOOL isToday;
 /** 是否为昨天*/
 @property (nonatomic, readonly) BOOL isYesterday;
+/** 获取当前日期当月的总天数*/
+@property (nonatomic,assign,readonly) NSInteger monthAllDay;
 
 #pragma mark - 日期\时间\时间戳 转换
 
@@ -102,11 +104,31 @@
            anotherDate:(NSDate *)anotherDay;
 
 /**
- 通过日期获取当前是周几
+ 通过日期,获取当前是周几
 
  @param date 日期
  @return 周数(1-7  ->  日-六)
  */
 + (NSInteger)m_getNumberInWeek:(NSDate *)date;
+
+/**
+ 获取指定日期所在月的全部天数
+
+ @param date  日期
+ @return  总天数
+ */
++ (NSInteger)m_getCurrentMonthAllDay:(NSDate *)date;
+
+/**
+ 判断两个日期是否为同月
+
+ @param oneDate  日期
+ @param anotherDate 另一个日期
+ @return  YES, 同月;NO, 反之
+ */
++ (BOOL)m_checkSameMonth:(NSDate *)oneDate
+             anotherMoth:(NSDate *)anotherDate;
+
+
 
 @end

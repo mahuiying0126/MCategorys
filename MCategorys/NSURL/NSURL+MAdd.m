@@ -11,6 +11,7 @@
 @implementation NSURL (MAdd)
 
 + (void)m_openBrowserWithURL:(NSString *)urlString{
+    
     [[UIApplication sharedApplication] openURL:urlString.url];
 }
 

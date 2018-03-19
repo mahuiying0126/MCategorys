@@ -8,6 +8,14 @@
 
 #import "UIApplication+MAdd.h"
 #import "NSBundle+MAdd.h"
+
+#import <CoreLocation/CoreLocation.h>
+#import <EventKit/EventKit.h>
+#import <Photos/Photos.h>
+#import <Contacts/Contacts.h>
+#import <AddressBook/AddressBook.h>
+
+
 @implementation UIApplication (MAdd)
 
 - (NSURL *)documentsURL {
@@ -59,6 +67,44 @@
 
 - (NSString *)appBuildVersion {
     return [NSBundle m_getBundleVersion];
+}
+
+- (BOOL)isGetLocationPermit{
+    BOOL authorizedAlways = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways;
+    BOOL authorizedWhenInUse = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
+    
+    if (authorizedAlways || authorizedWhenInUse) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isGetCameraPermit{
+    BOOL camerPermit = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized;
+    return camerPermit;
+}
+
+- (BOOL)isGetPhotosLibraryPermit{
+    BOOL phontosPetmit = [PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized;
+    return phontosPetmit;
+}
+
+- (BOOL)isGetReminderPermit{
+    BOOL ReminderPermit = [EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder] == EKAuthorizationStatusAuthorized;
+    return ReminderPermit;
+}
+
+- (BOOL)isGetAddressBookPermit{
+    if (@available(iOS 9.0, *)) {
+        
+        BOOL addressBookPermit = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized;
+        return addressBookPermit;
+        
+    } else {
+        
+        BOOL addressBookPermit = ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized;
+        return addressBookPermit;
+    }
 }
 
 

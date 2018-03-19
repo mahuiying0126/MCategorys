@@ -83,6 +83,11 @@
     return [added isToday];
 }
 
+- (NSInteger)monthAllDay{
+    NSRange totaldaysInMonth = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
+    return totaldaysInMonth.length;
+}
+
 - (NSDate *)dateByAddingDays:(NSInteger)days {
     NSTimeInterval aTimeInterval = [self timeIntervalSinceReferenceDate] + 86400 * days;
     NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
@@ -148,6 +153,22 @@
 + (NSInteger)m_getNumberInWeek:(NSDate *)date{
     NSUInteger number =[[NSCalendar currentCalendar] ordinalityOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitWeekOfMonth forDate:date];
     return number;
+}
+
++ (NSInteger)m_getCurrentMonthAllDay:(NSDate *)date{
+    NSRange totaldaysInMonth = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date];
+    return totaldaysInMonth.length;
+}
+
++ (BOOL)m_checkSameMonth:(NSDate *)oneDate anotherMoth:(NSDate *)anotherDate{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents * oneMonth = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:oneDate];
+    NSDateComponents* onotherMonth = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:anotherDate];
+    if ((oneMonth.year == onotherMonth.year)
+        && (oneMonth.month == onotherMonth.month)){
+        return  YES;
+    }
+    return NO;
 }
 
 @end

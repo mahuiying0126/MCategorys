@@ -29,6 +29,10 @@
     return [self m_exchangeAttribute];
 }
 
+-(id)jsonValueDecode{
+    return [self m_jsonValueDecode];
+}
+
 #pragma mark - 字符串处理
 
 - (BOOL)m_stringIsNullOrEmpty{
