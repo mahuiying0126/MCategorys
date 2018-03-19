@@ -176,9 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				305B5B6B205FF55700B29EFA /* NSDictionary+MAdd.h */,
+				305B5B6E205FF55700B29EFA /* NSDictionary+MAdd.m */,
 				305B5B6C205FF55700B29EFA /* NSMutableDictionary+MAdd.m */,
 				305B5B6D205FF55700B29EFA /* NSMutableDictionary+MAdd.h */,
-				305B5B6E205FF55700B29EFA /* NSDictionary+MAdd.m */,
 			);
 			path = NSDictory;
 			sourceTree = "<group>";
