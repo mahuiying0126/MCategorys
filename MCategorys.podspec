@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
  
   s.name         = "MCategorys"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "Categorys of iOS"
   s.homepage     = "https://github.com/mahuiying0126/MCategorys"
   # s.license    = "MIT"
